@@ -44,7 +44,7 @@ for child in root.findall('.//{http://api.namecheap.com/xml.response}DomainDetai
 
 # Preformating dates
 cDate = date(int(currentDate[0]), int(currentDate[1]), int(currentDate[2]))
-eDate = date(int(expirationDate[2]), int(expirationDate[1]), int(expirationDate[0]))
+eDate = date(int(expirationDate[2]), int(expirationDate[0]), int(expirationDate[1]))
 
 # Getting dates delta
 deltaDates = eDate - cDate
