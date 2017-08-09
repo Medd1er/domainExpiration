@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>3.2</version>
+    <date>2017-08-09T14:36:01Z</date>
+    <groups>
+        <group>
+            <name>Domains</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Domain Expiration</template>
+            <name>Domain Expiration</name>
+            <description/>
+            <groups>
+                <group>
+                    <name>Domains</name>
+                </group>
+            </groups>
+            <applications/>
+            <items>
+                <item>
+                    <name>Days Left</name>
+                    <type>0</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>domain-check[{$DOMAIN}, {$NCUSER}, {$APIUSER}, {$APIKEY}, {$CLIENTIP}]</key>
+                    <delay>30</delay>
+                    <history>7</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex>50/1-7,00:00-00:01</delay_flex>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications/>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+            </items>
+            <discovery_rules/>
+            <httptests/>
+            <macros>
+                <macro>
+                    <macro>{$APIKEY}</macro>
+                    <value/>
+                </macro>
+                <macro>
+                    <macro>{$APIUSER}</macro>
+                    <value/>
+                </macro>
+                <macro>
+                    <macro>{$CLIENTIP}</macro>
+                    <value/>
+                </macro>
+                <macro>
+                    <macro>{$DOMAIN}</macro>
+                    <value/>
+                </macro>
+                <macro>
+                    <macro>{$NCUSER}</macro>
+                    <value/>
+                </macro>
+            </macros>
+            <templates/>
+            <screens/>
+        </template>
+    </templates>
+    <triggers>
+        <trigger>
+            <expression>{Domain Expiration:domain-check[{$DOMAIN}, {$NCUSER}, {$APIUSER}, {$APIKEY}, {$CLIENTIP}].last()}=1</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
+            <name>1 day left</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>4</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>0</manual_close>
+            <dependencies/>
+            <tags/>
+        </trigger>
+        <trigger>
+            <expression>{Domain Expiration:domain-check[{$DOMAIN}, {$NCUSER}, {$APIUSER}, {$APIKEY}, {$CLIENTIP}].last()}&lt;=5 and {Domain Expiration:domain-check[{$DOMAIN}, {$NCUSER}, {$APIUSER}, {$APIKEY}, {$CLIENTIP}].last()}&gt;1</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
+            <name>5 or less days left</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>3</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>0</manual_close>
+            <dependencies/>
+            <tags/>
+        </trigger>
+        <trigger>
+            <expression>{Domain Expiration:domain-check[{$DOMAIN}, {$NCUSER}, {$APIUSER}, {$APIKEY}, {$CLIENTIP}].last()}&lt;=10 and {Domain Expiration:domain-check[{$DOMAIN}, {$NCUSER}, {$APIUSER}, {$APIKEY}, {$CLIENTIP}].last()}&gt;5</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
+            <name>10 or less days left</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>2</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>0</manual_close>
+            <dependencies/>
+            <tags/>
+        </trigger>
+        <trigger>
+            <expression>{Domain Expiration:domain-check[{$DOMAIN}, {$NCUSER}, {$APIUSER}, {$APIKEY}, {$CLIENTIP}].last()}&lt;=0</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
+            <name>Domain has been expired!</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>5</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>0</manual_close>
+            <dependencies/>
+            <tags/>
+        </trigger>
+    </triggers>
+</zabbix_export>
