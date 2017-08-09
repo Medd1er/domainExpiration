@@ -48,7 +48,7 @@ eDate = date(int(expirationDate[2]), int(expirationDate[1]), int(expirationDate[
 
 # Getting dates delta
 deltaDates = eDate - cDate
-if deltaDates < 0:
+if deltaDates.days < 0:
     print('0')
 else:
     print(deltaDates.days)
